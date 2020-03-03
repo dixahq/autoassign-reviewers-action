@@ -21,3 +21,30 @@ jobs:
         teams: "my-github-team"         # only works for GitHub Organisation/Teams
         persons: "aditya"               # add individual persons here 
 ```
+
+### Build & Release
+
+This project follows the template https://github.com/actions/typescript-action . Her are instructions to build & package.
+
+Install the dependencies  
+```bash
+$ npm install
+```
+
+Build the typescript and package it for distribution
+```bash
+$ npm run build && npm run pack
+```
+
+Run the tests :heavy_check_mark:  
+
+```bash
+$ npm test
+
+ PASS  ./index.test.js
+  ✓ throws invalid number (3ms)
+  ✓ wait 500 ms (504ms)
+  ✓ test runs (95ms)
+
+...
+```
