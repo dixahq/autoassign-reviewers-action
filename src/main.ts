@@ -20,15 +20,14 @@ export async function run() {
     const teams = core.getInput('teams').split(',').map(a => a.trim())
     const persons = core.getInput('persons')
       .split(',')
-      .filter(user => user !== issue.owner)
+      .filter(user => user != issue.owner)
       .map(a => a.trim())
-    
     if(teams.length == 0 && persons.length == 0){
       core.setFailed("Please specify 'teams' and/or 'persons'")
       return
     }
     else{
-      console.log("Adding teams: " + teams + ", persons: " + persons)
+      console.log("Adding teams: " + teams + ", persons: " + persons + ", owner: " + issue.owner)
     }
 
     await client.pulls.createReviewRequest(
