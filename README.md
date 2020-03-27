@@ -17,9 +17,9 @@ jobs:
     - name: "Adding Teams and Persons for review"
       uses: adipatel/auto-assign-review-teams@v0.3
       with:
-        repo-token: ${{ secrets.GITHUB_TOKEN }}
+        repo-token: ${{ secrets.USER_TOKEN_THAT_CAN_ASSIGN_REVIEWERS_ACTION }}
         teams: "my-github-team"         # only works for GitHub Organisation/Teams
-        persons: "aditya"               # add individual persons here 
+        persons: "github-username"               # add individual persons here 
 ```
 
 ### Build & Release
