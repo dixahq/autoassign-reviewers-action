@@ -9,13 +9,23 @@ export async function run() {
       issue: { owner: string; repo: string; number: number } = github.context.issue
       core.setSecret(repoToken);
 
+    //See https://octokit.github.io/rest.js/
+    const client = new github.GitHub(repoToken)
     if (issue == null || issue.number == null) {
       console.log('No pull request context, skipping')
       return
     }
+    const pull = await client.pulls.get(
+      {
+        owner: issue.owner,
+        repo: issue.repo,
+        pull_number: issue.number
+      }
+    )
 
-    //See https://octokit.github.io/rest.js/
-    const client = new github.GitHub(repoToken)
+    console.log("Context: " + github.context)
+    console.log("pull: " + pull)
+    console.log("GitHub: " + github)
 
     const teams = core.getInput('teams').split(',').map(a => a.trim())
     const persons = core.getInput('persons')
