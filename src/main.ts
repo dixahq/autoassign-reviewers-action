@@ -23,9 +23,13 @@ export async function run() {
       }
     )
 
-    console.log("Context: " + github.context)
-    console.log("pull: " + pull)
-    console.log("GitHub: " + github)
+    console.log("Actor: " + github.context.actor)
+    console.log("pull status: " + pull.status)
+    console.log("pull data: " + pull.data)
+    console.log("pull.toString: " + pull.toString())
+    console.log("Context.toString: " + github.context.toString())
+    console.log("Context.payload: " + github.context.payload)
+    console.log("Context.payload.string: " + github.context.payload.toString())
 
     const teams = core.getInput('teams').split(',').map(a => a.trim())
     const persons = core.getInput('persons')
