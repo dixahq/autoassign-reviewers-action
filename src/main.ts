@@ -20,7 +20,7 @@ export async function run() {
     const teams = core.getInput('teams').split(',').map(a => a.trim())
     const persons = core.getInput('persons')
       .split(',')
-      .filter(user => user !== issue.owner)
+      .filter(user => user !== github.context.actor)
       .map(a => a.trim())
     
     if(teams.length == 0 && persons.length == 0){
