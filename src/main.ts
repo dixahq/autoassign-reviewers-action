@@ -17,6 +17,20 @@ export async function run() {
     //See https://octokit.github.io/rest.js/
     const client = new github.GitHub(repoToken)
 
+    const pull = await client.pulls.get(
+      {
+        owner: issue.owner,
+        repo: issue.repo,
+        pull_number: issue.number
+      }
+    )
+
+    //Skip DRAFT PRs
+    if(pull.data.draft){
+      console.log('Skipped: DRAFT Pull Request, not assigning PR.')
+      return
+    }
+
     const teams = core.getInput('teams').split(',').map(a => a.trim())
     const persons = core.getInput('persons')
       .split(',')
