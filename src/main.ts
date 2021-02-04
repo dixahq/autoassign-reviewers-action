@@ -17,7 +17,8 @@ export async function run() {
     //See https://octokit.github.io/rest.js/
     const client = new github.GitHub(repoToken)
 
-    const includeDraft : Boolean =  Boolean(core.getInput('include-draft') || false)
+    const includeDraft : Boolean =  Boolean(core.getInput('include-draft')) || false
+
     const pull = await client.pulls.get(
       {
         owner: issue.owner,
@@ -35,8 +36,8 @@ export async function run() {
       return
     }
 
-    const teams = core.getInput('teams', { required: true }).split(',').map(a => a.trim())
-    const persons = core.getInput('persons', { required: true })
+    const teams = core.getInput('teams').split(',').map(a => a.trim())
+    const persons = core.getInput('persons')
       .split(',')
       .filter(user => user !== github.context.actor)
       .map(a => a.trim())
