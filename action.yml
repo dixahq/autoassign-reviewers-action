@@ -1,6 +1,6 @@
 name: 'Auto Assign Review Teams'
 description: 'Send review requests to teams (with Auto Assignment) or persons'
-author: 'aditya'
+author: 'dixa'
 branding:
   icon: 'check-square'
   color: 'purple'
@@ -16,5 +16,5 @@ inputs:
     required: false
 
 runs:
-  using: 'node12'
-  main: 'lib/index.js'
+  using: 'node20'
+  main: 'dist/index.js'
